@@ -6,5 +6,7 @@ namespace ContaFacil.Application.Common.Interfaces
     {
         Task AddAsync(Person pessoa);
         Task<IEnumerable<Person>> GetAllAsync();
+        Task<Person?> GetByIdAsync(Guid id);
+        Task DeleteAsync(Person pessoa);
     }
 }

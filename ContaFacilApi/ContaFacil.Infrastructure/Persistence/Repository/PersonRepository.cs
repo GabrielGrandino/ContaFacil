@@ -23,5 +23,17 @@ namespace ContaFacil.Infrastructure.Persistence
         {
             return await _context.Pessoas.ToListAsync();
         }
+
+        public async Task<Person?> GetByIdAsync(Guid id)
+        {
+            return await _context.Pessoas
+                .FirstOrDefaultAsync(p => p.Id == id);
+        }
+
+        public async Task DeleteAsync(Person pessoa)
+        {
+            _context.Pessoas.Remove(pessoa);
+            await _context.SaveChangesAsync();
+        }
     }
 }

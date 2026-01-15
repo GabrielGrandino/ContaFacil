@@ -29,5 +29,12 @@ namespace ContaFacil.API.Controllers
             var result = await _mediator.Send(new GetAllPersonsQuery());
             return Ok(result);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            await _mediator.Send(new DeletePersonCommand(id));
+            return NoContent();
+        }
     }
 }
