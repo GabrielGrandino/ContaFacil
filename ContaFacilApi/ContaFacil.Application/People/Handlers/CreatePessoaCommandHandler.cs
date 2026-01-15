@@ -14,19 +14,23 @@ namespace ContaFacil.Application.People.Commands
             _repository = repository;
         }
 
-        public Task<Guid> Handle(
+        public async Task<Guid> Handle(
             CreatePessoaCommand request,
             CancellationToken cancellationToken)
         {
             var pessoa = new Pessoa
             {
+                Id = Guid.NewGuid(),
                 Nome = request.Nome,
-                Idade = request.Idade
+                Idade = request.Idade,
+                CreatedAt = DateTime.UtcNow,
+                Ativo = 1
             };
 
-            _repository.Add(pessoa);
+            await _repository.AddAsync(pessoa);
 
-            return Task.FromResult(pessoa.Id);
+            return pessoa.Id;
         }
+
     }
 }

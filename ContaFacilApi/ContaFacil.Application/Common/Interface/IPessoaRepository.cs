@@ -4,7 +4,7 @@ namespace ContaFacil.Application.Common.Interfaces
 {
     public interface IPessoaRepository
     {
-        void Add(Pessoa pessoa);
-        IEnumerable<Pessoa> GetAll();
+        Task AddAsync(Pessoa pessoa);
+        Task<IEnumerable<Pessoa>> GetAllAsync();
     }
 }

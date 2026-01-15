@@ -1,15 +1,22 @@
 using ContaFacil.Application.People.Commands;
 using ContaFacil.Application.Common.Interfaces;
-using ContaFacil.Infrastructure.Persistence.InMemory;
+using ContaFacil.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ContaFacilDbContext>(options =>
+    options.UseNpgsql(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    )
+);
 
 // Add services to the container.
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(CreatePessoaCommand).Assembly)
 );
 
-builder.Services.AddSingleton<IPessoaRepository, PessoaRepositoryInMemory>();
+builder.Services.AddScoped<IPessoaRepository, PessoaRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

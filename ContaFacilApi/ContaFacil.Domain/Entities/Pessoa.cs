@@ -11,5 +11,7 @@ namespace ContaFacil.Domain.Entities
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Nome { get; set; } = null!;
         public int Idade { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public int Ativo { get; set; }
     }
 }
