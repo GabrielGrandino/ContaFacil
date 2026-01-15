@@ -9,6 +9,7 @@ namespace ContaFacil.Application.People.Handlers
         private readonly IPersonRepository _personRepository;
         private readonly ITransactionRepository _transacaoRepository;
 
+        //Injeção de dependencias
         public DeletePersonCommandHandler(
             IPersonRepository personRepository,
             ITransactionRepository transacaoRepository)
@@ -17,17 +18,19 @@ namespace ContaFacil.Application.People.Handlers
             _transacaoRepository = transacaoRepository;
         }
 
+        //Cria a tarefa para deletar a pessoa do banco de dados
         public async Task Handle(DeletePersonCommand request, CancellationToken cancellationToken)
         {
+            //Captura a pessoa pelo id informado
             var pessoa = await _personRepository.GetByIdAsync(request.PessoaId);
 
             if (pessoa is null)
                 throw new Exception("Pessoa não encontrada.");
 
-            // Apaga transações primeiro (regra clara)
+            // Deleta as transações primeiro
             await _transacaoRepository.DeleteByPessoaIdAsync(request.PessoaId);
 
-            // Apaga a pessoa
+            // Deleta a pessoa
             await _personRepository.DeleteAsync(pessoa);
         }
     }

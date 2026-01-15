@@ -3,9 +3,12 @@ using ContaFacil.Application.Common.Interfaces;
 using ContaFacil.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using ContaFacil.Infrastructure.Persistence.Repository;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//Configuração do banco de dados
 builder.Services.AddDbContext<ContaFacilDbContext>(options =>
     options.UseNpgsql(
         builder.Configuration.GetConnectionString("DefaultConnection")
@@ -24,7 +27,24 @@ builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "ContaFacil API",
+        Version = "v1",
+        Description = "API para gerenciamento de pessoas",
+        Contact = new OpenApiContact
+        {
+            Name = "Sua Equipe",
+            Email = "suporte@contafacil.com"
+        }
+    });
+
+    // Configuração para ler os comentários XML
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+});
 
 var app = builder.Build();
 
@@ -32,7 +52,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "ContaFacil API V1");
+        c.RoutePrefix = "swagger"; // Acesse em /swagger
+    });
 }
 
 app.UseHttpsRedirection();

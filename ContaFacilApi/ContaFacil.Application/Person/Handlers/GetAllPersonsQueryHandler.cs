@@ -10,17 +10,18 @@ namespace ContaFacil.Application.People.Handlers
     {
         private readonly IPersonRepository _repository;
 
+        //Injeção de dependencias
         public GetAllPersonsQueryHandler(IPersonRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<List<PersonViewModel>> Handle(
-            GetAllPersonsQuery request,
-            CancellationToken cancellationToken)
+        public async Task<List<PersonViewModel>> Handle(GetAllPersonsQuery request, CancellationToken cancellationToken)
         {
+            //Cria uma lista de pessoas
             var pessoas = await _repository.GetAllAsync();
 
+            //Retorna a lista pelo viewmodel
             return pessoas.Select(p => new PersonViewModel
             {
                 Id = p.Id,

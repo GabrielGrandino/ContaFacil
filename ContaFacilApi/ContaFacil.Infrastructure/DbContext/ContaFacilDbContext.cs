@@ -8,8 +8,10 @@ namespace ContaFacil.Infrastructure.Persistence
         public ContaFacilDbContext(DbContextOptions<ContaFacilDbContext> options)
             : base(options) { }
 
+        //Tabelas
         public DbSet<Person> Pessoas => Set<Person>();
 
+        //Passa para o configuration
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(
