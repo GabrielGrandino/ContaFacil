@@ -1,4 +1,5 @@
 ﻿using ContaFacil.Application.People.Commands;
+using ContaFacil.Application.People.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,13 @@ namespace ContaFacil.API.Controllers
         {
             var id = await _mediator.Send(command);
             return Ok(id);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var result = await _mediator.Send(new GetAllPessoasQuery());
+            return Ok(result);
         }
     }
 }
