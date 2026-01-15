@@ -23,6 +23,7 @@ builder.Services.AddMediatR(cfg =>
 //Services
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -55,7 +56,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "ContaFacil API V1");
-        c.RoutePrefix = "swagger"; // Acesse em /swagger
+        c.RoutePrefix = "swagger";
     });
 }
 
