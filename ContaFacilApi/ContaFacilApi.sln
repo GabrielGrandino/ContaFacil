@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContaFacilApi", "ContaFacilApi\ContaFacilApi.csproj", "{475C78BE-B204-42F0-B7A4-C003494388C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContaFacilApi", "ContaFacilApi\ContaFacilApi.csproj", "{475C78BE-B204-42F0-B7A4-C003494388C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContaFacil.Application", "ContaFacil.Application\ContaFacil.Application.csproj", "{593799AB-E1B9-4FE8-A29B-2AF609B41473}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContaFacil.Domain", "ContaFacil.Domain\ContaFacil.Domain.csproj", "{F7F704FB-8516-4675-8CBF-E558B04CBDA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContaFacil.Infrastructure", "ContaFacil.Infrastructure\ContaFacil.Infrastructure.csproj", "{C66E236D-75D8-4FF2-874F-307152F62D39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{475C78BE-B204-42F0-B7A4-C003494388C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{475C78BE-B204-42F0-B7A4-C003494388C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{475C78BE-B204-42F0-B7A4-C003494388C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{593799AB-E1B9-4FE8-A29B-2AF609B41473}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{593799AB-E1B9-4FE8-A29B-2AF609B41473}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{593799AB-E1B9-4FE8-A29B-2AF609B41473}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{593799AB-E1B9-4FE8-A29B-2AF609B41473}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7F704FB-8516-4675-8CBF-E558B04CBDA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7F704FB-8516-4675-8CBF-E558B04CBDA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7F704FB-8516-4675-8CBF-E558B04CBDA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7F704FB-8516-4675-8CBF-E558B04CBDA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C66E236D-75D8-4FF2-874F-307152F62D39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C66E236D-75D8-4FF2-874F-307152F62D39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C66E236D-75D8-4FF2-874F-307152F62D39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C66E236D-75D8-4FF2-874F-307152F62D39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

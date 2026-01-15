@@ -1,0 +1,32 @@
+﻿using ContaFacil.Application.Common.Interfaces;
+using ContaFacil.Domain.Entities;
+using MediatR;
+
+namespace ContaFacil.Application.People.Commands
+{
+    public class CreatePessoaCommandHandler
+        : IRequestHandler<CreatePessoaCommand, Guid>
+    {
+        private readonly IPessoaRepository _repository;
+
+        public CreatePessoaCommandHandler(IPessoaRepository repository)
+        {
+            _repository = repository;
+        }
+
+        public Task<Guid> Handle(
+            CreatePessoaCommand request,
+            CancellationToken cancellationToken)
+        {
+            var pessoa = new Pessoa
+            {
+                Nome = request.Nome,
+                Idade = request.Idade
+            };
+
+            _repository.Add(pessoa);
+
+            return Task.FromResult(pessoa.Id);
+        }
+    }
+}

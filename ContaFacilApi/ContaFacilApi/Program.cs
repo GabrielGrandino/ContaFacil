@@ -1,6 +1,15 @@
+using ContaFacil.Application.People.Commands;
+using ContaFacil.Application.Common.Interfaces;
+using ContaFacil.Infrastructure.Persistence.InMemory;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(CreatePessoaCommand).Assembly)
+);
+
+builder.Services.AddSingleton<IPessoaRepository, PessoaRepositoryInMemory>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
