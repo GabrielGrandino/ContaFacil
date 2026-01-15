@@ -4,12 +4,12 @@ using MediatR;
 
 namespace ContaFacil.Application.People.Commands
 {
-    public class CreatePessoaCommandHandler
+    public class CreatePersonCommandHandler
         : IRequestHandler<CreatePessoaCommand, Guid>
     {
-        private readonly IPessoaRepository _repository;
+        private readonly IPersonRepository _repository;
 
-        public CreatePessoaCommandHandler(IPessoaRepository repository)
+        public CreatePersonCommandHandler(IPersonRepository repository)
         {
             _repository = repository;
         }
@@ -18,7 +18,7 @@ namespace ContaFacil.Application.People.Commands
             CreatePessoaCommand request,
             CancellationToken cancellationToken)
         {
-            var pessoa = new Pessoa
+            var pessoa = new Person
             {
                 Id = Guid.NewGuid(),
                 Nome = request.Nome,

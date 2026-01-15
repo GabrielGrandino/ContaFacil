@@ -3,5 +3,5 @@ using ContaFacil.Application.People.ViewModels;
 
 namespace ContaFacil.Application.People.Queries
 {
-    public record GetAllPessoasQuery : IRequest<List<PessoaViewModel>>;
+    public record GetAllPersonsQuery : IRequest<List<PersonViewModel>>;
 }

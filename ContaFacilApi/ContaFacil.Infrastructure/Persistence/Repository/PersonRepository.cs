@@ -4,22 +4,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ContaFacil.Infrastructure.Persistence
 {
-    public class PessoaRepository : IPessoaRepository
+    public class PersonRepository : IPersonRepository
     {
         private readonly ContaFacilDbContext _context;
 
-        public PessoaRepository(ContaFacilDbContext context)
+        public PersonRepository(ContaFacilDbContext context)
         {
             _context = context;
         }
 
-        public async Task AddAsync(Pessoa pessoa)
+        public async Task AddAsync(Person pessoa)
         {
             _context.Pessoas.Add(pessoa);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Pessoa>> GetAllAsync()
+        public async Task<IEnumerable<Person>> GetAllAsync()
         {
             return await _context.Pessoas.ToListAsync();
         }

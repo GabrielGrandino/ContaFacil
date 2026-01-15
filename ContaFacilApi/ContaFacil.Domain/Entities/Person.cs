@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ContaFacil.Domain.Entities
 {
-    public class Pessoa
+    public class Person
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Nome { get; set; } = null!;

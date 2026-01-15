@@ -7,11 +7,11 @@ namespace ContaFacil.API.Controllers
 {
     [ApiController]
     [Route("api/pessoas")]
-    public class PessoasController : ControllerBase
+    public class PersonsController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public PessoasController(IMediator mediator)
+        public PersonsController(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -26,7 +26,7 @@ namespace ContaFacil.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var result = await _mediator.Send(new GetAllPessoasQuery());
+            var result = await _mediator.Send(new GetAllPersonsQuery());
             return Ok(result);
         }
     }

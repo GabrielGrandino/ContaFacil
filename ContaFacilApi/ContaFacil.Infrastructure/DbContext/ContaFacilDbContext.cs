@@ -8,7 +8,7 @@ namespace ContaFacil.Infrastructure.Persistence
         public ContaFacilDbContext(DbContextOptions<ContaFacilDbContext> options)
             : base(options) { }
 
-        public DbSet<Pessoa> Pessoas => Set<Pessoa>();
+        public DbSet<Person> Pessoas => Set<Person>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

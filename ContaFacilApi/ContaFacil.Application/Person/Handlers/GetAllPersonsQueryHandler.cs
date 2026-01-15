@@ -5,23 +5,23 @@ using ContaFacil.Application.Common.Interfaces;
 
 namespace ContaFacil.Application.People.Handlers
 {
-    public class GetAllPessoasQueryHandler
-        : IRequestHandler<GetAllPessoasQuery, List<PessoaViewModel>>
+    public class GetAllPersonsQueryHandler
+        : IRequestHandler<GetAllPersonsQuery, List<PersonViewModel>>
     {
-        private readonly IPessoaRepository _repository;
+        private readonly IPersonRepository _repository;
 
-        public GetAllPessoasQueryHandler(IPessoaRepository repository)
+        public GetAllPersonsQueryHandler(IPersonRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<List<PessoaViewModel>> Handle(
-            GetAllPessoasQuery request,
+        public async Task<List<PersonViewModel>> Handle(
+            GetAllPersonsQuery request,
             CancellationToken cancellationToken)
         {
             var pessoas = await _repository.GetAllAsync();
 
-            return pessoas.Select(p => new PessoaViewModel
+            return pessoas.Select(p => new PersonViewModel
             {
                 Id = p.Id,
                 Nome = p.Nome,

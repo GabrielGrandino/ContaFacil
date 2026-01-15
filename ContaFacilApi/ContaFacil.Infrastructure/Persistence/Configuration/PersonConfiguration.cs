@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ContaFacil.Infrastructure.Persistence.Configurations
 {
-    public class PessoaConfiguration : IEntityTypeConfiguration<Pessoa>
+    public class PersonConfiguration : IEntityTypeConfiguration<Person>
     {
-        public void Configure(EntityTypeBuilder<Pessoa> entity)
+        public void Configure(EntityTypeBuilder<Person> entity)
         {
             entity.ToTable("person");
 
