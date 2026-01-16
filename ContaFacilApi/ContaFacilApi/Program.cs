@@ -6,8 +6,27 @@ using ContaFacil.Infrastructure.Persistence.Repository;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using ContaFacil.Application.Common.Interface;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//Configuração do Serielog
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .WriteTo.File(
+        path: "Logs/log-.txt",
+        rollingInterval: RollingInterval.Day,
+        retainedFileCountLimit: 30,
+        fileSizeLimitBytes: 10_000_000,
+        rollOnFileSizeLimit: true,
+        shared: true
+    )
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+
 
 //Configuração do banco de dados
 builder.Services.AddDbContext<ContaFacilDbContext>(options =>
@@ -50,6 +69,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var app = builder.Build();
+
+app.UseGlobalExceptionHandling();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
