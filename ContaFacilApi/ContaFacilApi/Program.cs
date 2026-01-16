@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using ContaFacil.Infrastructure.Persistence.Repository;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using ContaFacil.Application.Common.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,10 +21,11 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(CreatePessoaCommand).Assembly)
 );
 
-//Services
+//Repositories
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IReportsRepository, ReportsRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
