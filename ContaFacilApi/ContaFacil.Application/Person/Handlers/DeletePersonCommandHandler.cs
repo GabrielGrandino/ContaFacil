@@ -27,9 +27,6 @@ namespace ContaFacil.Application.People.Handlers
             if (pessoa is null)
                 throw new Exception("Pessoa não encontrada.");
 
-            // Deleta as transações primeiro
-            await _transacaoRepository.DeleteByPessoaIdAsync(request.PessoaId);
-
             // Deleta a pessoa
             await _personRepository.DeleteAsync(pessoa);
         }

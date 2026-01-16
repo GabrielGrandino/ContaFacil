@@ -12,6 +12,7 @@ namespace ContaFacil.Infrastructure.Persistence
         public DbSet<Person> Pessoas => Set<Person>();
         public DbSet<Category> Categorias => Set<Category>();
         public DbSet<Purpose> Finalidade => Set<Purpose>();
+        public DbSet<Transaction> Transacoes => Set<Transaction>();
 
         //Passa para o configuration
         protected override void OnModelCreating(ModelBuilder modelBuilder)

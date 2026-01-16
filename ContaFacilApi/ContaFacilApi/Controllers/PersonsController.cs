@@ -75,7 +75,7 @@ namespace ContaFacil.API.Controllers
         /// 
         /// DELETE /api/pessoas/123e4567-e89b-12d3-a456-426614174000
         /// 
-        /// ⚠️ **Atenção:** Esta operação é irreversível.
+        /// ⚠️ **Atenção:** Esta operação é irreversível. Ao excluir uma pessoa todas as suas transações também serão excluídas.
         /// </remarks>
         /// <response code="204">Pessoa removida com sucesso</response>
         /// <response code="404">Pessoa não encontrada com o ID fornecido</response>
