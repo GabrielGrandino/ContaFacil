@@ -15,7 +15,7 @@ namespace ContaFacil.Infrastructure.Persistence.Configuration
         public void Configure(EntityTypeBuilder<GlobalTotalsViewModel> builder)
         {
             builder.HasNoKey();
-            builder.ToView("vw_person_totals");
+            builder.ToView("vw_global_totals");
 
             builder.Property(e => e.TotalReceitas).HasColumnName("total_receitas");
             builder.Property(e => e.TotalDespesas).HasColumnName("total_despesas");

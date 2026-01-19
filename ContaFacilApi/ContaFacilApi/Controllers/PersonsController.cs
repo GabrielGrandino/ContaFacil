@@ -9,7 +9,7 @@ namespace ContaFacil.API.Controllers
     /// Controller responsável por gerenciar todas as operações de CRUD para pessoas
     /// </summary>
     [ApiController]
-    [Route("api/pessoas")]
+    [Route("api/persons")]
     public class PersonsController : ControllerBase
     {
         private readonly IMediator _mediator;
