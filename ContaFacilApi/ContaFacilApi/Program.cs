@@ -68,6 +68,21 @@ builder.Services.AddSwaggerGen(c =>
     c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("FrontEnd", policy =>
+    {
+        policy
+            .WithOrigins(
+                "http://localhost:5173",
+                "http://localhost:3000"
+            )
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
+
 var app = builder.Build();
 
 app.UseGlobalExceptionHandling();
@@ -84,6 +99,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("FrontEnd");
 
 app.UseAuthorization();
 
