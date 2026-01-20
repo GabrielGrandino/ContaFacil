@@ -26,23 +26,50 @@ export default function PeoplePage() {
   };
 
   return (
-    <div>
-      <h1>Pessoas</h1>
+    <div className="page-grid">
+      <header className="page-header">
+        <div>
+          <h1 className="page-title">Pessoas</h1>
+          <p className="page-subtitle">
+            Cadastre quem participa das transações para ter relatórios mais
+            completos.
+          </p>
+        </div>
+      </header>
 
-      <PersonForm onCreated={loadPeople} />
+      <section className="form-card">
+        <PersonForm onCreated={loadPeople} />
+      </section>
 
-      <hr />
+      <section>
+        <div className="page-section-title">Pessoas cadastradas</div>
+        <div className="list-card">
+          <ul>
+            {people.map(p => (
+              <li key={p.id} className="list-item">
+                <div className="list-item-main">
+                  <span className="list-item-title">{p.nome}</span>
+                  <span className="list-item-sub">{p.idade} anos</span>
+                </div>
+                <div className="list-item-actions">
+                  <button
+                    className="btn btn-ghost-danger"
+                    onClick={() => handleDelete(p.id)}
+                  >
+                    Excluir
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
 
-      <ul>
-        {people.map(p => (
-          <li key={p.id}>
-            {p.nome} - {p.idade} anos
-            <button onClick={() => handleDelete(p.id)}>
-              Excluir
-            </button>
-          </li>
-        ))}
-      </ul>
+          {people.length === 0 && (
+            <p className="muted-text">
+              Nenhuma pessoa cadastrada ainda. Adicione alguém para começar.
+            </p>
+          )}
+        </div>
+      </section>
     </div>
   );
 }

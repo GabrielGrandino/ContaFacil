@@ -40,29 +40,32 @@ export default function CategoryForm({ onCreated }: Props) {
     <form onSubmit={handleSubmit}>
       <h2>Cadastrar Categoria</h2>
 
-      <div>
-        <label>Nome</label><br />
-        <input
-          type="text"
-          value={descricao}
-          onChange={e => setDescricao(e.target.value)}
-        />
+      <div className="form-grid">
+        <div className="form-field">
+          <label>Nome</label>
+          <input
+            type="text"
+            value={descricao}
+            placeholder="Ex.: Moradia, Lazer, Salário..."
+            onChange={e => setDescricao(e.target.value)}
+          />
+        </div>
+
+        <div className="form-field">
+          <label>Finalidade</label>
+          <select
+            value={purposeId}
+            onChange={e => setPurposeId(Number(e.target.value))}
+          >
+            <option value={1}>Despesa</option>
+            <option value={2}>Receita</option>
+            <option value={3}>Ambas</option>
+          </select>
+        </div>
       </div>
 
-      <div>
-        <label>Finalidade</label><br />
-        <select
-          value={purposeId}
-          onChange={e => setPurposeId(Number(e.target.value))}
-        >
-          <option value={1}>Despesa</option>
-          <option value={2}>Receita</option>
-          <option value={3}>Ambas</option>
-        </select>
-      </div>
-
-      <button type="submit" disabled={loading}>
-        {loading ? "Salvando..." : "Salvar"}
+      <button type="submit" className="btn btn-primary" disabled={loading}>
+        {loading ? "Salvando..." : "Salvar categoria"}      
       </button>
     </form>
   );

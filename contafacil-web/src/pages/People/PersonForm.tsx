@@ -29,7 +29,7 @@ export default function PersonForm({ onCreated }: Props) {
 
       await createPerson({
         nome,
-        idade: idadeNumero,
+        idade: idadeNumero
       });
 
       setNome("");
@@ -46,26 +46,29 @@ export default function PersonForm({ onCreated }: Props) {
     <form onSubmit={handleSubmit}>
       <h2>Cadastrar Pessoa</h2>
 
-      <div>
-        <label>Nome</label><br />
-        <input
-          type="text"
-          value={nome}
-          onChange={e => setNome(e.target.value)}
-        />
+      <div className="form-grid">
+        <div className="form-field">
+          <label>Nome</label>
+          <input
+            type="text"
+            value={nome}
+            placeholder="Nome completo"
+            onChange={e => setNome(e.target.value)}
+          />
+        </div>
+
+        <div className="form-field">
+          <label>Idade</label>
+          <input
+            type="number"
+            value={idade}
+            onChange={e => setIdade(e.target.value)}
+          />
+        </div>
       </div>
 
-      <div>
-        <label>Idade</label><br />
-        <input
-          type="number"
-          value={idade}
-          onChange={e => setIdade(e.target.value)}
-        />
-      </div>
-
-      <button type="submit" disabled={loading}>
-        {loading ? "Salvando..." : "Salvar"}
+      <button type="submit" className="btn btn-primary" disabled={loading}>
+        {loading ? "Salvando..." : "Salvar pessoa"}
       </button>
     </form>
   );

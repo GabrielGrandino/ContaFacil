@@ -26,35 +26,53 @@ export default function CategoriesPage() {
   };
 
   return (
-    <div>
-      <h1>Categorias</h1>
+    <div className="page-grid">
+      <header className="page-header">
+        <div>
+          <h1 className="page-title">Categorias</h1>
+          <p className="page-subtitle">
+            Organize suas transações em grupos para entender melhor seus gastos e
+            receitas.
+          </p>
+        </div>
+      </header>
 
-      <CategoryForm onCreated={loadCategories} />
+      <section className="form-card">
+        <CategoryForm onCreated={loadCategories} />
+      </section>
 
-      <hr />
-
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Finalidade</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {categories.map(c => (
-            <tr key={c.id}>
-              <td>{c.descricao}</td>
-              <td>{c.finalidade}</td>
-              <td>
-                <button onClick={() => handleDelete(c.id)}>
-                  Excluir
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <section>
+        <div className="page-section-title">Categorias cadastradas</div>
+        <div className="table-card">
+          <div className="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Finalidade</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {categories.map(c => (
+                  <tr key={c.id}>
+                    <td>{c.descricao}</td>
+                    <td>{c.finalidade}</td>
+                    <td>
+                      <button
+                        className="btn btn-ghost-danger"
+                        onClick={() => handleDelete(c.id)}
+                      >
+                        Excluir
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
