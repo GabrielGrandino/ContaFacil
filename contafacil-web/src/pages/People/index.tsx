@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getPeople, deletePerson } from "../../api/people.api";
 import type { Person } from "../../models/Person";
-import PersonForm from "../People/PersonFOrm";
+import PersonForm from "../People/PersonForm";
 
 export default function PeoplePage() {
   const [people, setPeople] = useState<Person[]>([]);
