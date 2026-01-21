@@ -21,6 +21,9 @@ export default function TransactionForm({ onCreated }: Props) {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(false);
 
+  const selectedPerson = people.find(p => p.id === pessoaId);
+  const isMinor = selectedPerson && selectedPerson.idade < 18;
+
   useEffect(() => {
     getPeople().then(setPeople);
     getCategories().then(setCategories);
@@ -30,19 +33,16 @@ export default function TransactionForm({ onCreated }: Props) {
     const cleaned = raw.trim().replace(/\s/g, "");
     if (!cleaned) return NaN;
 
-    // pt-BR: "." como milhar e "," como decimal (ex.: 1.234,56)
     if (cleaned.includes(",") && cleaned.includes(".")) {
       const normalized = cleaned.replace(/\./g, "").replace(",", ".");
       return Number(normalized);
     }
 
-    // pt-BR: decimal com "," (ex.: 20,00)
     if (cleaned.includes(",")) {
       const normalized = cleaned.replace(",", ".");
       return Number(normalized);
     }
 
-    // fallback: decimal com "." (ex.: 20.00)
     return Number(cleaned);
   };
 
@@ -53,6 +53,11 @@ export default function TransactionForm({ onCreated }: Props) {
 
     if (!descricao || valorNumero <= 0 || !pessoaId || categoryId === "") {
       alert("Preencha todos os campos corretamente");
+      return;
+    }
+
+    if (isMinor && tipoId === TransactionType.Receita) {
+      alert("Pessoa menor de idade não pode cadastrar receitas");
       return;
     }
 
@@ -106,17 +111,6 @@ export default function TransactionForm({ onCreated }: Props) {
         </div>
 
         <div className="form-field">
-          <label>Tipo</label>
-          <select
-            value={tipoId}
-            onChange={e => setTipoId(Number(e.target.value) as TransactionType)}
-          >
-            <option value={TransactionType.Despesa}>Despesa</option>
-            <option value={TransactionType.Receita}>Receita</option>
-          </select>
-        </div>
-
-        <div className="form-field">
           <label>Pessoa</label>
           <select value={pessoaId} onChange={e => setPessoaId(e.target.value)}>
             <option value="">Selecione uma pessoa</option>
@@ -125,6 +119,22 @@ export default function TransactionForm({ onCreated }: Props) {
                 {p.nome}
               </option>
             ))}
+          </select>
+        </div>
+
+        <div className="form-field">
+          <label>Tipo</label>
+          <select
+            value={tipoId}
+            onChange={e => setTipoId(Number(e.target.value) as TransactionType)}
+          >
+            <option value={TransactionType.Despesa}>Despesa</option>
+            <option
+              value={TransactionType.Receita}
+              disabled={isMinor}
+            >
+              Receita
+            </option>
           </select>
         </div>
 

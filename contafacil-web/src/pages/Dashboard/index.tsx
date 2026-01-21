@@ -15,6 +15,7 @@ export default function Dashboard() {
     });
   }, []);
 
+  //Calculando saldos totais
   const saldoCalculado =
     globalTotals?.totalReceitas != null && globalTotals?.totalDespesas != null
       ? globalTotals.totalReceitas - globalTotals.totalDespesas

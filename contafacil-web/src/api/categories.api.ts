@@ -13,7 +13,3 @@ export const getCategories = async () => {
 export const createCategory = async (data: CreateCategoryRequest) => {
   await http.post("api/categories", data);
 };
-
-export const deleteCategory = async (id: string) => {
-  await http.delete(`api/categories/${id}`);
-};

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTransactions, deleteTransaction } from "../../api/transactions.api";
+import { getTransactions } from "../../api/transactions.api";
 import type { Transaction } from "../../models/Transaction";
 import TransactionForm from "./TransactionForm";
 import { TransactionType } from "../../enums/TransactionType";
@@ -18,13 +18,6 @@ export default function TransactionsPage() {
       setTransactions(data);
     })();
   }, []);
-
-  const handleDelete = async (id: number) => {
-    if (!confirm("Excluir transação?")) return;
-
-    await deleteTransaction(id);
-    loadTransactions();
-  };
 
   const renderTipoPill = (tipo: string) => {
     if (tipo === TransactionType[TransactionType.Receita]) {
@@ -75,14 +68,6 @@ export default function TransactionsPage() {
                     <td>{renderTipoPill(t.tipo)}</td>
                     <td>{t.categoria}</td>
                     <td>{t.pessoa}</td>
-                    <td>
-                      <button
-                        className="btn btn-ghost-danger"
-                        onClick={() => handleDelete(t.id)}
-                      >
-                        Excluir
-                      </button>
-                    </td>
                   </tr>
                 ))}
               </tbody>

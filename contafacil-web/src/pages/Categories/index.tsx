@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getCategories, deleteCategory } from "../../api/categories.api";
+import { getCategories } from "../../api/categories.api";
 import type { Category } from "../../models/Category";
 import CategoryForm from "./CategoryForm";
 
@@ -17,13 +17,6 @@ export default function CategoriesPage() {
       setCategories(data);
     })();
   }, []);
-
-  const handleDelete = async (id: string) => {
-    if (!confirm("Deseja realmente excluir essa categoria?")) return;
-
-    await deleteCategory(id);
-    loadCategories();
-  };
 
   return (
     <div className="page-grid">
@@ -58,14 +51,6 @@ export default function CategoriesPage() {
                   <tr key={c.id}>
                     <td>{c.descricao}</td>
                     <td>{c.finalidade}</td>
-                    <td>
-                      <button
-                        className="btn btn-ghost-danger"
-                        onClick={() => handleDelete(c.id)}
-                      >
-                        Excluir
-                      </button>
-                    </td>
                   </tr>
                 ))}
               </tbody>

@@ -16,7 +16,3 @@ export const getTransactions = async () => {
 export const createTransaction = async (data: CreateTransactionRequest) => {
     await http.post("api/transactions", data);
   };
-
-export const deleteTransaction = async (id: number) => {
-  await http.delete(`api/transactions/${id}`);
-};

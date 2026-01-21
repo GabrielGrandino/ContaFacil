@@ -10,6 +10,7 @@ export default function CategoryForm({ onCreated }: Props) {
   const [purposeId, setPurposeId] = useState<number>(1);
   const [loading, setLoading] = useState(false);
 
+  // Função para lidar com o envio do formulário
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
